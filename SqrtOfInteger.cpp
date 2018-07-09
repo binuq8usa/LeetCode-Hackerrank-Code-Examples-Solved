@@ -19,6 +19,8 @@
 // y = x/2;
 // y*y > x => search between 0,y
 
+// Lesson Learned : make sure the value does not exceed the variable capacity. Eg: use of int64_t when computing sqaure of an integer
+
 void binarySearch(int lowVal, int highVal, int x, int& sqrtVal){
   
   if(int64_t y = lowVal + (highVal-lowVal)/2; y*y <= x && int64_t((y+1)*(y+1)) > x){ // y =2, 
