@@ -30,6 +30,9 @@ bool checkIfArrayIsRotated(vector<int>& nums){
 
 int find_pivot(vector<int>& nums){
   int N = nums.size();
+  if(N == 0)
+    return -1;
+  
   int mid_pt_val = nums[N/2];
   
   // base case
@@ -63,6 +66,9 @@ int binary_search(int target,vector<int>& nums){
   int N = nums.size();
   int index = -1;
   
+  if(N == 0)
+    return -1;
+  
   // base case
   if(N == 1){
     index = (nums[0] == target) ? 0 : -1;
@@ -95,6 +101,9 @@ int binary_search(int target,vector<int>& nums){
 
 // O(logN)
 int search(int target,vector<int>& nums){ 
+  int N = nums.size();
+  if(N == 0)
+    return -1;
   int pivot_idx = find_pivot(nums);
   int index = -1;
   // no rotation 
@@ -144,6 +153,11 @@ TEST_CASE("Binary Search - 2","[binary_search]"){
   REQUIRE(binary_search(12,arr) == 7); 
 }
 
+TEST_CASE("NULL Entry - Binary Search","[binary_search]"){
+  vector<int> arr;
+  REQUIRE(binary_search(4,arr) == -1);
+}
+
 TEST_CASE("Find Pivot - 1","[find_pivot]"){
   int nums[] = {1,2,4,5,6,7,0};
   vector<int> arr(nums,nums+sizeof(nums)/sizeof(int));
@@ -190,6 +204,11 @@ TEST_CASE("Find Pivot - 7","[find_pivot]"){
   int nums[] = {2,3,4,5,6,7,8,9};
   vector<int> arr(nums,nums+sizeof(nums)/sizeof(int));
   
+  REQUIRE(find_pivot(arr) == -1);
+}
+
+TEST_CASE("NULL Entry - Find Pivot","[find_pivot]"){
+  vector<int> arr;
   REQUIRE(find_pivot(arr) == -1);
 }
 
@@ -285,6 +304,11 @@ TEST_CASE("Search Rotated Array - 7","[search]"){
   REQUIRE(search(11,arr) == -1); 
   REQUIRE(search(-2,arr) == -1); 
   REQUIRE(search(9,arr) == 7); 
+}
+
+TEST_CASE("NULL Entry - Search Rotated Array","[search]"){
+  vector<int> arr;
+  REQUIRE(search(4,arr) == -1);
 }
 
 
